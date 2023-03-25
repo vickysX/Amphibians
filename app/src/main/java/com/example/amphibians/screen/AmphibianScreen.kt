@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -93,7 +94,8 @@ fun LoadingErrorScreen(
                 isError -> stringResource(id = R.string.error_frog)
                 else -> stringResource(id = R.string.loading_frog)
             },
-            fontSize = 24.sp
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center
         )
 
     }
@@ -155,6 +157,8 @@ fun AmphibianCard(
                 contentDescription = stringResource(id = R.string.img_description),
                 modifier = Modifier
                     .fillMaxSize(),
+                error = painterResource(id = R.drawable.frog_face_svgrepo_com_error),
+                placeholder = painterResource(id = R.drawable.frog_svgrepo_com_loading),
                 contentScale = ContentScale.FillBounds
             )
         }

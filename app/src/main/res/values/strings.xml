@@ -3,5 +3,5 @@
 
     <string name="img_description">Funny amphibian drawing</string>
     <string name="loading_frog">I\'m waiting…</string>
-    <string name="error_frog">Sorry, something went wrong \u1f612</string>
+    <string name="error_frog">Sorry, something went wrong</string>
 </resources>
