@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -104,7 +105,10 @@ fun ResultGridScreen(
     modifier: Modifier = Modifier,
     amphibians: List<Amphibian>
 ) {
-    LazyColumn() {
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         items(amphibians) {
             AmphibianCard(amphibian = it)
         }
@@ -116,22 +120,42 @@ fun AmphibianCard(
     modifier: Modifier = Modifier,
     amphibian: Amphibian
 ) {
-    Card() {
-        Column() {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .wrapContentSize(Alignment.Center)
+        ) {
             Text(
                 text = "${amphibian.name} (${amphibian.type})",
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .padding(8.dp)
             )
             Text(
-                text = amphibian.description
+                text = amphibian.description,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .padding(8.dp)
             )
             AsyncImage(
                 model = ImageRequest.Builder(context = LocalContext.current)
                     .data(amphibian.imgSrc)
                     .crossfade(true)
                     .build(),
-                contentDescription = stringResource(id = R.string.img_description)
+                contentDescription = stringResource(id = R.string.img_description),
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentScale = ContentScale.FillBounds
             )
         }
     }
