@@ -10,14 +10,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.amphibians.screen.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AmphibianApp(
     modifier: Modifier = Modifier,
-    amphibianViewModel: AmphibianViewModel = viewModel()
+    amphibianViewModel: AmphibianViewModel
 ) {
+    val amphibiansUiState = amphibianViewModel.amphibiansUiState
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {}
@@ -28,7 +29,9 @@ fun AmphibianApp(
                 .padding(it),
             color = MaterialTheme.colorScheme.background
         ) {
-
+            HomeScreen(
+                amphibiansUiState = amphibiansUiState
+            )
         }
     }
 }
